@@ -1,0 +1,26 @@
+/* ==========================================
+   ESTILOS DE LA PÁGINA DE INICIO (Home)
+   ========================================== */
+
+.hero {
+  background: linear-gradient(rgba(31, 41, 55, 0.7), rgba(31, 41, 55, 0.7)), url('../assets/img/hero-bg.jpg') center/cover no-repeat;
+  color: var(--white);
+  text-align: center;
+  padding: 6rem 1rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
