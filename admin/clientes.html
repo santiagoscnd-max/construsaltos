@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM de Clientes | Admin ConstruSaltos</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <span class="logo-text">Panel Admin - ConstruSaltos</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="analitica.html">Analítica BI</a>
+                <a href="index.html">Reservas</a>
+                <a href="inventario.html">Inventario</a>
+                <a href="clientes.html" class="active">Clientes (CRM)</a>
+                <button onclick="cerrarSesionAdmin()" class="btn" style="background: #ef4444; color: white; padding: 6px 12px; font-size: 0.8rem; border: none; border-radius: 4px; cursor: pointer;">Cerrar Sesión</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container admin-main" style="max-width: 1000px; margin: 2rem auto;">
+        <section class="admin-header" style="margin-bottom: 2rem;">
+            <h2>Directorio y CRM de Clientes</h2>
+            <p>Visualiza la base de datos de clientes registrados y sus perfiles de contacto corporativo.</p>
+        </section>
+
+        <!-- Listado de Clientes en Tabla -->
+        <section>
+            <div style="background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background: #f3f4f6; border-bottom: 1px solid #e5e7eb;">
+                            <th style="padding: 12px; font-size: 0.9rem;">Cliente / Usuario</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Correo Electrónico</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Teléfono de Contacto</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Empresa / RUC</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaClientesBody">
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 2rem; color: #6b7280;">Cargando directorio de clientes...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" style="margin-top: 4rem;">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - CRM Interno</p>
+        </div>
+    </footer>
+
+    <script type="module" src="clientes.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+/* ==========================================
+   ESTILOS DE LA PÁGINA DE INICIO (Home)
+   ========================================== */
+
+/* 1. Hero / Banner Principal */
+.hero {
+  background: linear-gradient(rgba(31, 41, 55, 0.75), rgba(31, 41, 55, 0.25)), url('https://images.pexels.com/photos/38520033/pexels-photo-38520033.jpeg') center/cover no-repeat;
+  color: var(--white);
+  text-align: center;
+  padding: 7rem 1rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-content h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #e5e7eb;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--white);
+  border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+/* Títulos de Secciones Comunes */
+.section-title {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.section-title p {
+  color: var(--text-color);
+  font-size: 1.05rem;
+}
+
+/* 2. Estadísticas / Confianza */
+.stats-section {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  padding: 3rem 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+  font-size: 1.1rem;
+  color: #d1d5db;
+}
+
+/* 3. Especialidades / Servicios */
+.services-section {
+  padding: 5rem 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background-color: var(--white);
+  padding: 2.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border-top: 4px solid var(--primary-color);
+  transition: var(--transition);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.service-card h3 {
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+/* 4. Maquinaria Destacada */
+.featured-section {
+  background-color: #e5e7eb;
+  padding: 5rem 0;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.featured-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.featured-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.featured-info {
+  padding: 1.5rem;
+}
+
+.featured-info h3 {
+  color: var(--secondary-color);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.featured-info .precio {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary-dark);
+  margin-bottom: 1.2rem;
+}
+
+.featured-info .precio span {
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: var(--text-color);
+}
+
+.featured-info .btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* 5. Ventajas Competitivas */
+.advantages-section {
+  padding: 5rem 0;
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.advantage-item {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+}
+
+.advantage-item h4 {
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* 6. CTA Final */
+.cta-final {
+  background: linear-gradient(rgba(31, 41, 55, 0.9), rgba(31, 41, 55, 0.9)), url('https://images.pexels.com/photos/38520034/pexels-photo-38520034.jpeg') center/cover no-repeat;
+  color: var(--white);
+  text-align: center;
+  padding: 5rem 1rem;
+}
+
+.cta-final h2 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.cta-final p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #d1d5db;
+}

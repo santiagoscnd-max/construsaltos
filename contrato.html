@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Contrato Legal | ConstruSaltos S.A.</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/contacto.css">
+
+    <!-- Estilos específicos para que al imprimir luzca como un documento formal -->
+    <style>
+        @media print {
+            /* Ocultar elementos que no deben salir en el documento impreso o PDF */
+            header, footer, .btn-no-imprimir, form {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12pt;
+            }
+            .contenedor-contrato {
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: #f8fafc;">
+
+    <!-- Header Global (Se oculta al imprimir) -->
+    <header class="site-header btn-no-imprimir">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <span class="logo-text">ConstruSaltos S.A.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="alquileres.html">Mis Alquileres</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container" style="max-width: 800px; margin: 2.5rem auto;">
+        
+        <div class="contenedor-contrato" style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            
+            <!-- Membrete Formal -->
+            <div style="text-align: center; border-bottom: 2px solid #1e293b; padding-bottom: 20px; margin-bottom: 25px;">
+                <h1 style="color: #1e293b; font-size: 1.8rem; margin-bottom: 5px; text-transform: uppercase;">ConstruSaltos S.A.</h1>
+                <p style="color: #475569; font-size: 0.9rem; font-weight: bold;">CONTRATO DE ARRENDAMIENTO OPERATIVO DE MAQUINARIA PESADA</p>
+                <p style="color: #64748b; font-size: 0.8rem;">RUC: 0992837465001 | Provincia de Santa Elena, Ecuador</p>
+            </div>
+
+            <!-- Cuerpo del Contrato -->
+            <div style="font-size: 0.95rem; color: #334155; line-height: 1.8; margin-bottom: 25px; text-align: justify;">
+                <p style="margin-bottom: 12px;">
+                    Conste por el presente documento privado el contrato de arrendamiento de maquinaria pesada que celebran, de una parte, la empresa <strong>ConstruSaltos S.A.</strong>, y de la otra parte el/la ciudadano(a) <strong id="txtNombreCliente">[Cargando Nombre...]</strong>, con cédula de identidad / RUC Nro. <strong id="txtIdentificacionCliente">[Cargando Cédula...]</strong>, en adelante denominado <strong>EL ARRENDATARIO</strong>, bajo los términos y condiciones estipulados a continuación:
+                </p>
+                
+                <p style="margin-bottom: 12px;"><strong>PRIMERA (DEL OBJETO):</strong> El arrendador otorga en calidad de alquiler temporal la maquinaria especificada en la orden de reserva activa generada por la plataforma web, la misma que cuenta con certificaciones de mantenimiento vigentes.</p>
+                
+                <p style="margin-bottom: 12px;"><strong>SEGUNDA (DEL PLAZO Y COSTOS):</strong> El plazo del arrendamiento se computará estrictamente en función de los días solicitados por el cliente. El valor total de la contraprestación económica ha sido calculado y aceptado de conformidad en el resumen de la orden.</p>
+                
+                <p style="margin-bottom: 15px;"><strong>TERCERA (DE LA RESPONSABILIDAD):</strong> El locatario asume la responsabilidad absoluta por la custodia, operación idónea y seguridad de los equipos en la obra de destino, comprometiéndose a devolverlos en las mismas condiciones en las que los recibe.</p>
+            </div>
+
+            <!-- Resumen Dinámico de la Orden -->
+            <div id="resumenContrato" style="background: #f1f5f9; padding: 20px; border-radius: 6px; margin-bottom: 30px; font-size: 0.9rem; border-left: 4px solid var(--primary-color);">
+                <p>Cargando detalles específicos de la orden...</p>
+            </div>
+
+            <!-- Espacio para Firmas Físicas (Con el nombre del cliente inyectado) -->
+            <div style="display: flex; justify-content: space-between; margin-top: 50px; margin-bottom: 30px; text-align: center;">
+                <div style="width: 40%; border-top: 1px solid #94a3b8; padding-top: 8px;">
+                    <p style="font-size: 0.85rem; font-weight: bold; color: #1e293b;">CONSTRUSALTOS S.A.</p>
+                    <p style="font-size: 0.75rem; color: #64748b;">Representante Legal / Operaciones</p>
+                </div>
+                <div style="width: 40%; border-top: 1px solid #94a3b8; padding-top: 8px;">
+                    <p id="txtFirmaCliente" style="font-size: 0.85rem; font-weight: bold; color: #1e293b;">EL CLIENTE / ARRENDATARIO</p>
+                    <p id="txtCedulaFirma" style="font-size: 0.75rem; color: #64748b;">C.I. / RUC: --------</p>
+                </div>
+            </div>
+
+            <!-- Botones de Acción (Se ocultan al imprimir) -->
+            <div class="btn-no-imprimir" style="display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                <button onclick="window.print()" class="btn" style="background: var(--secondary-color); color: white; padding: 10px 20px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold;">🖨️ Imprimir / Guardar Contrato en PDF</button>
+            </div>
+
+            <!-- Formulario de Subida del Contrato Firmado (Se oculta al imprimir) -->
+            <form class="btn-no-imprimir" onsubmit="subirContratoFirmado(event)" style="border-top: 1px solid #e2e8f0; padding-top: 25px;">
+                <h3 style="font-size: 1.1rem; color: var(--secondary-color); margin-bottom: 10px;">✍️ Validación de Firma y Carga de Documento</h3>
+                <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 15px;">Imprima este contrato, fírmelo, escanéelo o tómale una foto clara, y súbalo a continuación para desbloquear la pasarela de pago.</p>
+                
+                <div style="margin-bottom: 20px;">
+                    <input type="file" id="inputArchivoContrato" accept=".pdf, .png, .jpg, .jpeg" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff;">
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; padding: 12px; background: var(--primary-color); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem;">Validar Contrato y Continuar al Pago</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer Global (Se oculta al imprimir) -->
+    <footer class="site-footer btn-no-imprimir" style="margin-top: 4rem;">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Módulo de Auditoría Legal</p>
+        </div>
+    </footer>
+
+    <script type="module" src="js/contrato.js"></script>
+</body>
+</html>

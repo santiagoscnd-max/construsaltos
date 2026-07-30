@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrador | ConstruSaltos S.A.</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/contacto.css">
+</head>
+<body>
+
+    <!-- Header del Login Admin -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo-container">
+                <span class="logo-text">ConstruSaltos S.A. - Admin</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html">Volver al Sitio Público</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal del Login Admin -->
+    <main class="container contacto-main" style="max-width: 500px; margin-top: 4rem;">
+        <section class="contacto-form-container">
+            <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--secondary-color);">Acceso Administrativo</h3>
+            <p style="text-align: center; color: var(--text-color); margin-bottom: 2rem; font-size: 0.9rem;">Ingrese con su cuenta autorizada de administración.</p>
+            
+            <form id="formLoginAdmin" onsubmit="iniciarSesionAdmin(event)">
+                <div class="form-group">
+                    <label for="emailAdmin">Correo Electrónico:</label>
+                    <input type="email" id="emailAdmin" required placeholder="admin@construsaltos.com">
+                </div>
+                <div class="form-group">
+                    <label for="passwordAdmin">Contraseña:</label>
+                    <input type="password" id="passwordAdmin" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Ingresar al Panel</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Seguridad Interna</p>
+        </div>
+    </footer>
+
+    <!-- Lógica modular de inicio de sesión de Admin -->
+    <script type="module" src="login-admin.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta | ConstruSaltos S.A.</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/contacto.css"> <!-- Reutilizamos estilos de formularios -->
+</head>
+<body>
+
+    <!-- Header / Barra de Navegación Global -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="assets/img/Logo ConstruSaltos.png" alt="Logo ConstruSaltos S.A." class="logo-img">
+                <span class="logo-text">ConstruSaltos S.A.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html">Inicio</a>
+                <a href="acerca.html">Nosotros</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal de Registro -->
+    <main class="container contacto-main" style="max-width: 600px;">
+        <section class="contacto-form-container">
+            <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 1.5rem;">Crear Nueva Cuenta</h3>
+            
+            <form id="formRegistro" onsubmit="registrarUsuario(event)">
+                <div class="form-group">
+                    <label for="emailRegistro">Correo Electrónico:</label>
+                    <input type="email" id="emailRegistro" required placeholder="tu-correo@empresa.com">
+                </div>
+                <div class="form-group">
+                    <label for="passwordRegistro">Contraseña (Mínimo 6 caracteres):</label>
+                    <input type="password" id="passwordRegistro" required minlength="6" placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Registrarse</button>
+            </form>
+
+            <p style="text-align: center; margin-top: 1.5rem;">
+                ¿Ya tienes una cuenta? <a href="login.html" style="color: var(--primary-dark); font-weight: bold;">Inicia Sesión aquí</a>
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer Global -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script de Autenticación -->
+    <script type="module" src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

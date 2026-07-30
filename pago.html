@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago | ConstruSaltos S.A.</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body style="background-color: #f8fafc;">
+
+    <!-- Header Global -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <span class="logo-text">ConstruSaltos S.A.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="alquileres.html">Mis Alquileres</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal de Pago -->
+    <main class="container" style="max-width: 900px; margin: 2.5rem auto;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2 style="color: var(--secondary-color); font-size: 1.8rem;">🔒 Pasarela de Pago Segura</h2>
+            <p style="color: #64748b; font-size: 0.95rem;">Complete su información de pago para confirmar el contrato de alquiler.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: start;">
+            
+            <!-- Resumen de la Orden (El "Carrito" de la reserva actual) -->
+            <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-color);">
+                <h3 style="font-size: 1.2rem; color: var(--secondary-color); margin-bottom: 1rem;">📦 Resumen del Alquiler</h3>
+                <div id="resumenDetallePago" style="font-size: 0.9rem; color: #475569; display: flex; flex-direction: column; gap: 10px;">
+                    <p>Cargando detalles de la orden...</p>
+                </div>
+            </div>
+
+            <!-- Formulario de Pago Profesional -->
+            <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <form id="formSimulacionPago" onsubmit="procesarPagoRealista(event)">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label for="metodoPago" style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Método de Pago:</label>
+                        <select id="metodoPago" required class="form-control" onchange="cambiarMetodoPago()" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                            <option value="tarjeta">💳 Tarjeta de Crédito / Débito</option>
+                            <option value="transferencia">🏦 Transferencia Bancaria Directa</option>
+                        </select>
+                    </div>
+
+                    <!-- Sección Tarjeta Estilo Real -->
+                    <div id="seccionTarjeta">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Nombre en la Tarjeta:</label>
+                            <input type="text" id="nombreTitular" required placeholder="Ej. Carlos Mendoza" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Número de Tarjeta:</label>
+                            <input type="text" id="numTarjeta" required placeholder="4532 •••• •••• 8900" maxlength="19" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: monospace; letter-spacing: 1px;">
+                        </div>
+                        <div style="display: flex; gap: 15px; margin-bottom: 1.5rem;">
+                            <div style="flex: 1;">
+                                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Expiración:</label>
+                                <input type="text" id="expTarjeta" required placeholder="MM/AA" maxlength="5" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                            </div>
+                            <div style="flex: 1;">
+                                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">CVV:</label>
+                                <input type="password" id="cvvTarjeta" required placeholder="123" maxlength="4" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección Transferencia Bancaria -->
+                    <div id="seccionTransferencia" style="display: none;">
+                        <div style="background: #f1f5f9; padding: 15px; border-radius: 6px; margin-bottom: 1.2rem; font-size: 0.85rem; line-height: 1.5;">
+                            <p style="font-weight: bold; color: var(--secondary-color); margin-bottom: 5px;">Datos Bancarios Oficiales:</p>
+                            <p><strong>Banco:</strong> Banco Pichincha (Cuenta Corriente)</p>
+                            <p><strong>Nro de Cuenta:</strong> 2100558899</p>
+                            <p><strong>RUC Empresa:</strong> 0992837465001</p>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Número de Comprobante / Transferencia:</label>
+                            <input type="text" id="comprobanteRef" placeholder="Ej. TRF-987654321" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 1rem; background-color: var(--primary-color); border: none; border-radius: 6px; font-weight: bold; cursor: pointer; color: white;">Autorizar y Procesar Pago</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Global -->
+    <footer class="site-footer" style="margin-top: 4rem;">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Pasarela Cifrada SSL</p>
+        </div>
+    </footer>
+
+    <script type="module" src="js/pago.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

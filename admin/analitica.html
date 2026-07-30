@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analítica y Business Intelligence | Admin ConstruSaltos</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <span class="logo-text">Panel Admin - ConstruSaltos</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="analitica.html" class="active">Analítica BI</a>
+                <a href="index.html">Reservas</a>
+                <a href="inventario.html">Inventario</a>
+                <a href="clientes.html">Clientes (CRM)</a>
+                <button onclick="cerrarSesionAdmin()" class="btn" style="background: #ef4444; color: white; padding: 6px 12px; font-size: 0.8rem; border: none; border-radius: 4px; cursor: pointer;">Cerrar Sesión</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container admin-main" style="max-width: 1100px; margin: 2rem auto;">
+        <section class="admin-header" style="margin-bottom: 2rem;">
+            <h2>Panel de Analítica y Rendimiento Comercial</h2>
+            <p>Métricas complejas, KPIs financieros y distribución logística de flotas para la toma de decisiones gerenciales.</p>
+        </section>
+
+        <!-- Bloque de KPIs Avanzados -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 2.5rem;">
+            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #10b981;">
+                <span style="font-size: 0.8rem; color: #6b7280; font-weight: bold;">INGRESOS REALES (CONFIRMADOS)</span>
+                <h3 id="biIngresosReales" style="font-size: 1.8rem; color: var(--secondary-color); margin-top: 5px;">$0.00</h3>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #3b82f6;">
+                <span style="font-size: 0.8rem; color: #6b7280; font-weight: bold;">TASA DE OCUPACIÓN DE FLOTA</span>
+                <h3 id="biTasaOcupacion" style="font-size: 1.8rem; color: var(--secondary-color); margin-top: 5px;">0%</h3>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #f59e0b;">
+                <span style="font-size: 0.8rem; color: #6b7280; font-weight: bold;">TICKET PROMEDIO POR CONTRATO</span>
+                <h3 id="biTicketPromedio" style="font-size: 1.8rem; color: var(--secondary-color); margin-top: 5px;">$0.00</h3>
+            </div>
+        </div>
+
+        <!-- Bloque de Desglose Analítico -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 2rem;">
+            <!-- Distribución por Zonas -->
+            <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h3 style="color: var(--secondary-color); font-size: 1.1rem; margin-bottom: 1rem;">📍 Solicitudes por Zona Geográfica</h3>
+                <div id="contenedorZonasBI" style="display: flex; flex-direction: column; gap: 10px;">
+                    <p style="color: #6b7280; font-size: 0.9rem;">Cargando distribución territorial...</p>
+                </div>
+            </div>
+
+            <!-- Resumen de Estados Operativos -->
+            <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h3 style="color: var(--secondary-color); font-size: 1.1rem; margin-bottom: 1rem;">⚙️ Estado Actual de Contratos</h3>
+                <div id="contenedorEstadosBI" style="display: flex; flex-direction: column; gap: 10px;">
+                    <p style="color: #6b7280; font-size: 0.9rem;">Calculando estados operativos...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer" style="margin-top: 4rem;">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Módulo de Analítica BI</p>
+        </div>
+    </footer>
+
+    <script type="module" src="analitica.js"></script>
+</body>
+</html>

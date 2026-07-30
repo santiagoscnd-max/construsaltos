@@ -1,0 +1,161 @@
+/* ==========================================
+   ESTILOS DE LA PÁGINA NOSOTROS (acerca.css)
+   ========================================== */
+
+.acerca-main {
+  padding-bottom: 3rem;
+}
+
+/* 1. Hero de la Página Nosotros */
+.about-hero {
+  padding: 4rem 0 2rem 0;
+  text-align: center;
+}
+
+.about-hero-content {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.about-hero-content h2 {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.about-hero-content p {
+  font-size: 1.15rem;
+  color: var(--text-color);
+  line-height: 1.7;
+}
+
+/* 2. Misión y Visión */
+.mission-vision-section {
+  padding: 3rem 0;
+}
+
+.mv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.mv-card {
+  background-color: var(--white);
+  padding: 3rem 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-top: 5px solid var(--primary-color);
+  transition: var(--transition);
+}
+
+.mv-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.mv-card h3 {
+  font-size: 1.6rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.mv-card p {
+  font-size: 1.05rem;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* 3. Valores y Pilares */
+.values-section {
+  background-color: var(--bg-light);
+  padding: 5rem 0;
+  margin: 2rem 0;
+}
+
+.section-title {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.value-item {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+}
+
+.value-item h4 {
+  color: var(--secondary-color);
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.value-item p {
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+/* 4. Capacidad Operativa */
+.capacity-section {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.capacity-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.capacity-content h2 {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.capacity-content p {
+  color: #e5e7eb;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* 5. CTA Final de la Página */
+.about-cta {
+  background-color: var(--white);
+  text-align: center;
+  padding: 4rem 1rem;
+  margin-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.about-cta h2 {
+  font-size: 2rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.about-cta p {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}

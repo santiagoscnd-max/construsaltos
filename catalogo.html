@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Maquinaria | ConstruSaltos S.A.</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/catalogo.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+
+    <!-- Header Global -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="assets/img/Logo ConstruSaltos.png" alt="Logo ConstruSaltos S.A." class="logo-img">
+                <span class="logo-text">ConstruSaltos S.A.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html" class="active">Catálogo</a>
+                <a href="alquileres.html">Mis Alquileres</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal del Catálogo -->
+    <main class="container reveal" style="padding: 2rem 0;">
+        <section class="catalogo-header" style="text-align: center; margin-bottom: 2rem;">
+            <h2>Nuestro Catálogo de Maquinaria Pesada</h2>
+            <p>Selecciona el equipo ideal para tu obra. Todos nuestros equipos cuentan con certificación y mantenimiento garantizado.</p>
+        </section>
+
+        <!-- Barra de Búsqueda y Filtros -->
+        <div class="filtros-container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 2rem;">
+            <div class="categorias-botones" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn-filtro active" onclick="filtrarCategoria('todos')">Todos</button>
+                <button class="btn-filtro" onclick="filtrarCategoria('excavacion')">Excavación</button>
+                <button class="btn-filtro" onclick="filtrarCategoria('carga')">Carga y Elevación</button>
+                <button class="btn-filtro" onclick="filtrarCategoria('transporte')">Transporte Pesado</button>
+                <button class="btn-filtro" onclick="filtrarCategoria('compactacion')">Compactación</button>
+            </div>
+            <div>
+                <input type="text" id="inputBuscar" onkeyup="filtrarMaquinaria()" placeholder="Buscar maquinaria..." style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; width: 250px;">
+            </div>
+        </div>
+
+        <!-- Contenedor Dinámico que se llena con Firestore -->
+        <div class="catalogo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <!-- Las tarjetas de maquinaria se cargan automáticamente desde js/catalogo.js -->
+        </div>
+    </main>
+
+    <!-- Modal de Selección de Ubicación y Unidades -->
+    <div id="modalUbicacion" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+        <div style="background: white; padding: 25px; border-radius: 8px; width: 100%; max-width: 500px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto;">
+            <h3 style="margin-bottom: 5px; color: var(--secondary-color);">Configurar Alquiler y Ubicación</h3>
+            <p id="infoMaquinaSeleccionada" style="font-size: 0.85rem; color: #4b5563; margin-bottom: 10px; font-weight: bold;"></p>
+            
+            <form onsubmit="procesarSimulacion(event)">
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 3px;">Zona General:</label>
+                    <select id="zonaEntrega" required style="width: 100%; padding: 6px; border: 1px solid #d1d5db; border-radius: 4px;">
+                        <option value="Salinas">Salinas</option>
+                        <option value="La Libertad">La Libertad</option>
+                        <option value="Santa Elena">Santa Elena</option>
+                        <option value="Manglaralto">Manglaralto / Ruta del Spondylus</option>
+                    </select>
+                </div>
+
+                <!-- Contenedor del Mapa Interactivo -->
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 3px;">Pincha en el mapa para marcar la ubicación exacta de la obra:</label>
+                    <div id="mapaUbicacionObra" style="width: 100%; height: 180px; border-radius: 6px; border: 1px solid #d1d5db; z-index: 1001;"></div>
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 3px;">Dirección o Referencia seleccionada:</label>
+                    <input type="text" id="direccionObra" required readonly placeholder="Haz clic en el mapa..." style="width: 100%; padding: 6px; border: 1px solid #d1d5db; border-radius: 4px; background: #f9fafb; font-size: 0.85rem;">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+                    <div>
+                        <label style="display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 3px;">Unidades:</label>
+                        <input type="number" id="cantidadUnidades" min="1" value="1" required style="width: 100%; padding: 6px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 3px;">Días:</label>
+                        <input type="number" id="diasAlquiler" min="1" value="1" required style="width: 100%; padding: 6px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                </div>
+
+                <div style="background: #f3f4f6; padding: 8px; border-radius: 4px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.85rem; font-weight: bold;">Costo Estimado Total:</span>
+                    <span id="totalEstimado" style="font-size: 1rem; font-weight: bold; color: var(--primary-color);">$0.00</span>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn" style="flex: 1; padding: 8px;">Confirmar y Pagar</button>
+                    <button type="button" onclick="cerrarModalUbicacion()" style="background: #e5e7eb; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Global -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts Modulares -->
+    <script type="module" src="js/catalogo.js"></script>
+    <script type="module" src="js/reserva.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/scroll-reveal.js"></script>
+</body>
+</html>

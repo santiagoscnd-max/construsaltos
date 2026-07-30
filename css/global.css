@@ -1,0 +1,226 @@
+/* ==========================================
+   ESTILOS GLOBALES (Header y Footer compartidos)
+   ========================================== */
+
+/* Barra de Navegación */
+.site-header {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* ==========================================
+   ESTILOS DEL LOGOTIPO EN EL HEADER
+   ========================================== */
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre la imagen y el texto */
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 40px;  /* Ajusta el ancho de tu logo según prefieras */
+  height: 40px; /* Ajusta la altura de tu logo */
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-menu a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--primary-color);
+}
+
+/* Pie de Página */
+.site-footer {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.nav-auth-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  border: 1px solid var(--primary-color);
+  color: var(--white);
+}
+
+.nav-auth-btn:hover {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+.nav-auth-btn.btn-reg {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.nav-auth-btn.btn-reg:hover {
+  background-color: var(--primary-dark);
+  color: var(--white);
+}
+
+/* ==========================================
+   ESTILOS RESPONSIVOS GLOBALES (Mobile-First)
+   ========================================== */
+
+/* Botón hamburguesa oculto por defecto en computadoras */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: var(--white);
+  cursor: pointer;
+}
+/* ==========================================
+   ESTILOS RESPONSIVOS GLOBALES Y MEDIA QUERIES
+   ========================================== */
+
+/* Asegurar que las imágenes y contenedores no rompan el ancho de la pantalla */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Contenedores flexibles en pantallas pequeñas */
+@media (max-width: 768px) {
+    /* Convertir grids de 2 columnas a 1 sola columna en móviles */
+    main.container, 
+    .contacto-main, 
+    .admin-main {
+        padding: 15px !important;
+    }
+
+    /* Forzar que los formularios y paneles de dos columnas se apilen */
+    div[style*="grid-template-columns: 1fr 1fr"],
+    div[style*="grid-template-columns: 1fr 1.2fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    /* Adaptar menús de navegación superiores */
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    /* Tablas administrativas con desplazamiento horizontal en móviles */
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* --- ANIMACIONES Y EFECTOS VISUALES --- */
+
+/* --- ANIMACIONES Y EFECTOS VISUALES GENERALES --- */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplicar la animación suave a todas las tarjetas y secciones de la web */
+.alquiler-card, 
+.admin-header, 
+.service-card, 
+.stat-card, 
+.mv-card, 
+.value-item, 
+.advantage-item, 
+.maquina-card,
+div[style*="background: white"] {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Transiciones suaves en botones */
+.btn, button {
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Efecto hover elegante para todas las tarjetas del sitio */
+.alquiler-card:hover, 
+.service-card:hover, 
+.mv-card:hover, 
+.value-item:hover, 
+.advantage-item:hover, 
+.maquina-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* --- EFECTO DE APARICIÓN PROGRESIVA AL HACER SCROLL (SCROLL REVEAL) --- */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

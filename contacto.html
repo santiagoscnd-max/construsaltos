@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto y Ubicación | ConstruSaltos S.A.</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/contacto.css">
+    <!-- Leaflet CSS para el Mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+
+    <!-- Header Global -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <span class="logo-text">ConstruSaltos S.A.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html">Inicio</a>
+                <a href="acerca.html">Nosotros</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="contacto.html" class="active">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal de Contacto y Mapa -->
+    <main class="container contacto-main reveal" style="max-width: 1000px; margin: 2.5rem auto;">
+        <section style="text-align: center; margin-bottom: 2.5rem;">
+            <h2 style="color: var(--secondary-color); font-size: 2rem; margin-bottom: 0.5rem;">Centro de Atención y Oficinas</h2>
+            <p style="color: #64748b; font-size: 1rem;">Comunícate con nosotros o visítanos en nuestros patios principales en la Península de Santa Elena.</p>
+        </section>
+
+        <!-- Diseño de Dos Columnas: Formulario de Contacto / Info + Mapa -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch;">
+            
+            <!-- Columna 1: Información Corporativa y Formulario de Mensajes -->
+            <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h3 style="color: var(--secondary-color); font-size: 1.3rem; margin-bottom: 1rem;">Envíanos un Mensaje</h3>
+                
+                <form onsubmit="enviarMensajeContacto(event)">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Nombre Completo:</label>
+                        <input type="text" required placeholder="Tu nombre..." style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Correo Electrónico:</label>
+                        <input type="email" required placeholder="correo@ejemplo.com" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Mensaje o Requerimiento:</label>
+                        <textarea rows="4" required placeholder="Detalles sobre el alquiler de maquinaria..." style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 0.95rem; background: var(--primary-color); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Enviar Mensaje</button>
+                </form>
+            </div>
+
+            <!-- Columna 2: Mapa de Ubicación Interactiva -->
+            <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                <h3 style="color: var(--secondary-color); font-size: 1.3rem; margin-bottom: 1rem;">Nuestra Ubicación Principal</h3>
+                <p style="font-size: 0.9rem; color: #475569; margin-bottom: 15px;">Av. Principal / Patios de Operación, La Libertad, Santa Elena, Ecuador.</p>
+                
+                <!-- Contenedor del Mapa Leaflet -->
+                <div id="mapaUbicacionEmpresa" style="width: 100%; flex: 1; min-height: 250px; border-radius: 6px; border: 1px solid #cbd5e1;"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Global -->
+    <footer class="site-footer" style="margin-top: 4rem;">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- Script para inicializar el mapa de la empresa -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Coordenadas fijas de la empresa en la provincia de Santa Elena (Ej: La Libertad / Salinas)
+            const latEmpresa = -2.230685;
+            const lngEmpresa = -80.883706;
+
+            const mapaEmpresa = L.map('mapaUbicacionEmpresa').setView([latEmpresa, lngEmpresa], 14);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(mapaEmpresa);
+
+            // Marcador fijo con etiqueta corporativa
+            L.marker([latEmpresa, lngEmpresa]).addTo(mapaEmpresa)
+                .bindPopup("<b>ConstruSaltos S.A.</b><br>Patios Centrales de Maquinaria Pesada.")
+                .openPopup();
+        });
+
+        window.enviarMensajeContacto = function(event) {
+            event.preventDefault();
+            alert("¡Mensaje enviado con éxito! Nos pondremos en contacto con usted a la brevedad.");
+            event.target.reset();
+        };
+    </script>
+    <script src="js/scroll-reveal.js"></script>
+</body>
+</html>

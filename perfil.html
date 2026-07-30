@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil y Configuración | ConstruSaltos S.A.</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- Header Global -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="assets/img/Logo ConstruSaltos.png" alt="Logo ConstruSaltos S.A." class="logo-img">
+                <span class="logo-text">ConstruSaltos S.A.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="alquileres.html">Mis Alquileres</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal del Perfil -->
+    <main class="container admin-main" style="max-width: 800px; margin: 2rem auto;">
+        <section class="admin-header" style="margin-bottom: 2rem;">
+            <h2>Configuración de Cuenta y Datos Personales</h2>
+            <p>Actualiza tu información fiscal, dirección de domicilio y la seguridad de tu acceso en ConstruSaltos S.A.</p>
+        </section>
+
+        <!-- SECCIÓN 1: Datos Personales, Fiscales y Domicilio -->
+        <div style="background: var(--white); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem;">
+            <h3 style="color: var(--secondary-color); margin-bottom: 1rem; font-size: 1.3rem;">📋 Información Fiscal y de Contacto</h3>
+            <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 1.5rem;">Estos datos se emplean para la emisión de contratos y comprobantes de alquiler.</p>
+            
+            <form id="formDatosPerfil" onsubmit="guardarDatosPerfil(event)">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 1rem;">
+                    <div>
+                        <label for="inputNombres" style="display: block; font-weight: 600; margin-bottom: 5px;">Nombres:</label>
+                        <input type="text" id="inputNombres" required class="form-control" placeholder="Ej. Carlos Alberto" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                    <div>
+                        <label for="inputApellidos" style="display: block; font-weight: 600; margin-bottom: 5px;">Apellidos:</label>
+                        <input type="text" id="inputApellidos" required class="form-control" placeholder="Ej. Mendoza Vera" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 1rem;">
+                    <div>
+                        <label for="inputRuc" style="display: block; font-weight: 600; margin-bottom: 5px;">RUC o Cédula de Identidad:</label>
+                        <input type="text" id="inputRuc" required class="form-control" placeholder="Ej. 0928374652001" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                    <div>
+                        <label for="inputTelefono" style="display: block; font-weight: 600; margin-bottom: 5px;">Teléfono Celular:</label>
+                        <input type="tel" id="inputTelefono" required class="form-control" placeholder="Ej. 0991234567" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="inputDireccion" style="display: block; font-weight: 600; margin-bottom: 5px;">Dirección de Domicilio / Matriz:</label>
+                    <input type="text" id="inputDireccion" required class="form-control" placeholder="Ej. Av. Principal y Calle 9, Salinas" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
+                </div>
+
+                <button type="submit" class="btn">Guardar Cambios de Perfil</button>
+            </form>
+        </div>
+
+        <!-- SECCIÓN 2: Seguridad (Cambio de Contraseña) -->
+        <div style="background: var(--white); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem;">
+            <h3 style="color: var(--secondary-color); margin-bottom: 1rem; font-size: 1.3rem;">🔒 Seguridad de la Cuenta</h3>
+            <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 1.5rem;">Actualiza tu contraseña de acceso de manera segura.</p>
+            
+            <form id="formCambiarPassword" onsubmit="cambiarContrasenaUsuario(event)">
+                <div style="margin-bottom: 1rem;">
+                    <label for="nuevaPassword" style="display: block; font-weight: 600; margin-bottom: 5px;">Nueva Contraseña:</label>
+                    <input type="password" id="nuevaPassword" required minlength="6" placeholder="Mínimo 6 caracteres" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 4px;">
+                </div>
+                <button type="submit" class="btn" style="background: var(--secondary-color); color: var(--white);">Actualizar Contraseña</button>
+            </form>
+        </div>
+
+        <!-- SECCIÓN 3: Zona de Peligro -->
+        <div style="background: #fef2f2; border: 1px solid #fecaca; padding: 25px; border-radius: 8px;">
+            <h3 style="color: #991b1b; margin-bottom: 0.5rem; font-size: 1.1rem;">⚠️ Zona de Peligro</h3>
+            <p style="font-size: 0.9rem; color: #7f1d1d; margin-bottom: 1rem;">Si eliminas tu cuenta, se borrarán tus credenciales de acceso de forma permanente.</p>
+            <button onclick="eliminarCuentaUsuario()" style="background: #dc2626; color: white; border: none; padding: 8px 16px; border-radius: 4px; font-weight: bold; cursor: pointer;">Eliminar mi cuenta permanentemente</button>
+        </div>
+    </main>
+
+    <!-- Footer Global -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica JavaScript del Perfil -->
+    <script type="module" src="js/perfil.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

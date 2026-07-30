@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Inventario | Admin ConstruSaltos</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <span class="logo-text">Panel Admin - ConstruSaltos</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="analitica.html">Analítica BI</a>
+                <a href="index.html">Reservas</a>
+                <a href="inventario.html" class="active">Inventario</a>
+                <a href="clientes.html">Clientes (CRM)</a>
+                <button onclick="cerrarSesionAdmin()" class="btn" style="background: #ef4444; color: white; padding: 6px 12px; font-size: 0.8rem; border: none; border-radius: 4px; cursor: pointer;">Cerrar Sesión</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container admin-main" style="max-width: 1000px; margin: 2rem auto;">
+        <section class="admin-header" style="margin-bottom: 2rem;">
+            <h2>Gestión de Inventario y Maquinaria</h2>
+            <p>Agrega nueva maquinaria o administra los equipos disponibles en el catálogo público.</p>
+        </section>
+
+        <!-- Formulario para Registrar / Editar Maquinaria -->
+        <div style="background: var(--white); padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem;">
+            <h3 id="tituloFormulario" style="margin-bottom: 1rem; color: var(--secondary-color);">Registrar Nueva Maquinaria y Stock</h3>
+            <form id="formNuevaMaquina" onsubmit="guardarMaquinaria(event)">
+                <!-- Input oculto para saber si estamos editando un ID existente -->
+                <input type="hidden" id="idMaquinaEditando">
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label style="display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px;">Nombre del Equipo:</label>
+                        <input type="text" id="nombreMaquina" required placeholder="Ej: Excavadora Cat 320" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px;">Categoría:</label>
+                        <select id="categoriaMaquina" required style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; background: white;">
+                            <option value="excavacion">Excavación</option>
+                            <option value="carga">Carga y Elevación</option>
+                            <option value="transporte">Transporte Pesado</option>
+                            <option value="compactacion">Compactación</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px;">Stock Total (Unidades):</label>
+                        <input type="number" id="stockMaquina" min="1" value="1" required style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label style="display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px;">Precio por Día ($):</label>
+                        <input type="number" step="0.01" id="precioMaquina" required placeholder="Ej: 150.00" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px;">URL de la Imagen:</label>
+                        <input type="url" id="imagenMaquina" required placeholder="https://..." style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    </div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px;">Descripción Breve:</label>
+                    <textarea id="descripcionMaquina" rows="2" required placeholder="Características principales..." style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;"></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" id="btnSubmitForm" class="btn">Guardar y Publicar en Catálogo</button>
+                    <button type="button" id="btnCancelarEdicion" onclick="cancelarEdicion()" style="display: none; background: #e5e7eb; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Cancelar Edición</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Listado de Maquinaria Actual en la Base de Datos -->
+        <section>
+            <h3 style="margin-bottom: 1rem; color: var(--secondary-color);">Maquinaria Registrada en el Sistema</h3>
+            <div style="background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background: #f3f4f6; border-bottom: 1px solid #e5e7eb;">
+                            <th style="padding: 12px; font-size: 0.9rem;">Equipo</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Categoría</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Stock Total</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Precio/Día</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaInventarioBody">
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 2rem; color: #6b7280;">Cargando inventario...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" style="margin-top: 4rem;">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Panel de Control</p>
+        </div>
+    </footer>
+
+    <script type="module" src="inventario.js"></script>
+</body>
+</html>

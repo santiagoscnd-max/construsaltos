@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | ConstruSaltos S.A.</title>
+    <!-- Enlaces a CSS externos -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+    <!-- Header / Barra de Navegación Global -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="assets/img/Logo ConstruSaltos.png" alt="Logo ConstruSaltos S.A." class="logo-img">
+                <span class="logo-text">ConstruSaltos S.A.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="active">Inicio</a>
+                <a href="acerca.html">Nosotros</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="login.html" class="nav-auth-btn">Iniciar Sesión</a>
+                <a href="registro.html" class="nav-auth-btn btn-reg">Registrarse</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <!-- 1. Sección Hero / Banner Principal -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h2>Potencia tus obras con maquinaria pesada confiable</h2>
+                <p>Alquiler seguro, rápido y con cobertura a nivel nacional. Soluciones óptimas para construcción, obras viales e industria.</p>
+                <div class="hero-buttons">
+                    <a href="catalogo.html" class="btn">Ver Flota Disponible</a>
+                    <a href="contacto.html" class="btn btn-secondary">Solicitar Asesoría</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sección de Estadísticas / Indicadores de Confianza -->
+        <section class="stats-section">
+            <div class="container stats-grid">
+                <div class="stat-card">
+                    <h3>+10</h3>
+                    <p>Máquinas en Flota</p>
+                </div>
+                <div class="stat-card">
+                    <h3>100%</h3>
+                    <p>Mantenimiento Preventivo</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Nacional</h3>
+                    <p>Cobertura de Entrega</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sección de Especialidades / Servicios -->
+        <section class="services-section container reveal">
+            <div class="section-title">
+                <h2>Nuestras Especialidades</h2>
+                <p>Brindamos soporte técnico y equipos especializados para cada etapa de tu proyecto.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Movimiento de Tierras</h3>
+                    <p>Excavación profunda, nivelación y retiro de material con maquinaria de alto rendimiento.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Obras Viales</h3>
+                    <p>Compactación y acondicionamiento de bases para carreteras y caminos firmes.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Logística y Carga</h3>
+                    <p>Manipulación ágil de áridos, agregados y materiales pesados en el área de trabajo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Vista Previa / Destacados del Catálogo -->
+        <section style="padding: 3rem 0;" class="reveal">
+            <div class="container" style="text-align: center;">
+                <h2 style="color: var(--secondary-color); font-size: 2rem; margin-bottom: 0.5rem;">Maquinaria Destacada</h2>
+                <p style="color: #6b7280; margin-bottom: 2rem;">Conoce algunos de los equipos más solicitados por nuestros clientes.</p>
+                
+                <!-- Contenedor dinámico conectado a Firestore -->
+                <div id="gridMaquinariaDestacada" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; text-align: left;">
+                    <div style="grid-column: 1 / -1; text-align: center; color: #6b7280; padding: 2rem;">Sincronizando equipos destacados desde la base de datos...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Sección de Ventajas Competitivas -->
+        <section class="advantages-section container reveal">
+            <div class="section-title">
+                <h2>¿Por qué elegir ConstruSaltos S.A.?</h2>
+                <p>Garantizamos eficiencia y respaldo en cada contrato de alquiler.</p>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <h4>Tarjetas Flexibles</h4>
+                    <p>Planes de alquiler adaptados por días, semanas o meses según las necesidades de tu obra.</p>
+                </div>
+                <div class="advantage-item">
+                    <h4>Entrega Directa</h4>
+                    <p>Llevamos la maquinaria pesada directamente hasta la ubicación exacta de tu proyecto.</p>
+                </div>
+                <div class="advantage-item">
+                    <h4>Soporte Constante</h4>
+                    <p>Asistencia técnica y supervisión permanente para asegurar cero retrasos operativos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Llamado a la Acción Final (Pre-Footer) -->
+        <section class="cta-final">
+            <div class="container">
+                <h2>¿Listo para arrancar tu próximo proyecto de construcción?</h2>
+                <p>Ponte en contacto con nuestro equipo comercial y asegura tus equipos hoy mismo.</p>
+                <a href="contacto.html" class="btn">Contáctanos Ahora</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Global -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script type="module" src="js/index.js"></script>
+    <script type="module" src="js/navbar-auth.js"></script>
+    <script src="js/scroll-reveal.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control Principal | Admin ConstruSaltos</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-container">
+                <span class="logo-text">Panel Admin - ConstruSaltos</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="analitica.html">Analítica BI</a>
+                <a href="index.html" class="active">Reservas</a>
+                <a href="inventario.html">Inventario</a>
+                <a href="clientes.html">Clientes (CRM)</a>
+                <button onclick="cerrarSesionAdmin()" class="btn" style="background: #ef4444; color: white; padding: 6px 12px; font-size: 0.8rem; border: none; border-radius: 4px; cursor: pointer;">Cerrar Sesión</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container admin-main" style="max-width: 1100px; margin: 2rem auto;">
+        <section class="admin-header" style="margin-bottom: 2rem;">
+            <h2>Centro de Control y Alquileres</h2>
+            <p>Monitorea las solicitudes de maquinaria y el flujo comercial en tiempo real.</p>
+        </section>
+
+        <!-- Tarjetas de Métricas / KPIs rápidos -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 2.5rem;">
+            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid var(--primary-color);">
+                <span style="font-size: 0.85rem; color: #6b7280; font-weight: bold;">TOTAL RESERVAS</span>
+                <h3 id="kpiTotalReservas" style="font-size: 1.8rem; color: var(--secondary-color); margin-top: 5px;">0</h3>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #10b981;">
+                <span style="font-size: 0.85rem; color: #6b7280; font-weight: bold;">INGRESOS ESTIMADOS</span>
+                <h3 id="kpiIngresos" style="font-size: 1.8rem; color: var(--secondary-color); margin-top: 5px;">$0.00</h3>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #3b82f6;">
+                <span style="font-size: 0.85rem; color: #6b7280; font-weight: bold;">CLIENTES REGISTRADOS</span>
+                <h3 id="kpiClientes" style="font-size: 1.8rem; color: var(--secondary-color); margin-top: 5px;">0</h3>
+            </div>
+        </div>
+
+        <!-- Tabla General de Reservas -->
+        <section>
+            <h3 style="margin-bottom: 1rem; color: var(--secondary-color);">Solicitudes de Alquiler Recientes</h3>
+            <div style="background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background: #f3f4f6; border-bottom: 1px solid #e5e7eb;">
+                            <th style="padding: 12px; font-size: 0.9rem;">Cliente</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Equipo Solicitado</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Ubicación / Obra</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Total / Días</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Estado</th>
+                            <th style="padding: 12px; font-size: 0.9rem;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaReservasAdminBody">
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">Cargando solicitudes de alquiler...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" style="margin-top: 4rem;">
+        <div class="container">
+            <p>&copy; 2026 ConstruSaltos S.A. - Panel de Control</p>
+        </div>
+    </footer>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
